@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  legendasws:
+    image: uilton/thexem-proxy:latest
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+    - ./config/xem-mapping.json:/thexem/config/xem-mapping.json:ro
