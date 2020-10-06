@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  legendasws:
+  thexem-proxy:
     image: uilton/thexem-proxy:latest
     restart: unless-stopped
     ports:
