@@ -12,6 +12,8 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 
+RUN npm run build
+
 EXPOSE 3000
 VOLUME /thexem/config
 
