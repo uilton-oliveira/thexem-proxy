@@ -35,14 +35,19 @@ app.all("*", function (req, res, next) {
             let body = response.body;
             let rawdata = fs.readFileSync('config/xem-mapping.json');
             let mapping = JSON.parse(rawdata);
+            (mapping.exclude || []).forEach(([key, value]) => {
+                delete body.data[key];
+            })
 
-            Object.entries(mapping).forEach(([key, value]) => {
+            Object.entries(mapping.include || {}).forEach(([key, value]) => {
                 if (key in body.data) {
                     body.data[key] = body.data[key].concat(value);
                 } else {
                     body.data[key] = value;
                 }
             });
+
+
 
             res.send(JSON_stringify(body))
         })
