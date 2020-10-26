@@ -35,7 +35,7 @@ app.all("*", function (req, res, next) {
             let body = response.body;
             let rawdata = fs.readFileSync('config/xem-mapping.json');
             let mapping = JSON.parse(rawdata);
-            (mapping.exclude || []).forEach(([key, value]) => {
+            (mapping.exclude || []).forEach((key) => {
                 delete body.data[key];
             })
 
