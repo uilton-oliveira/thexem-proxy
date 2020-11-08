@@ -32,14 +32,21 @@ app.all("*", function (req, res, next) {
                 return;
             }
 
+            console.log("Overriding request")
+
             let body = response.body;
             let rawdata = fs.readFileSync('config/xem-mapping.json');
             let mapping = JSON.parse(rawdata);
-            (mapping.exclude || []).forEach((key) => {
+
+            let excludeEntries = mapping.exclude || [];
+            console.log(`Exclude entries: ${excludeEntries.length}`);
+            excludeEntries.forEach((key) => {
                 delete body.data[key];
             })
 
-            Object.entries(mapping.include || {}).forEach(([key, value]) => {
+            let includeEntries = Object.entries(mapping.include || []);
+            console.log(`Include entries: ${includeEntries.length}`)
+            includeEntries.forEach(([key, value]) => {
                 if (key in body.data) {
                     body.data[key] = body.data[key].concat(value);
                 } else {
@@ -58,7 +65,7 @@ app.all("*", function (req, res, next) {
 });
 
 // The port the express app will listen on
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3005;
 
 // Serve the application at the given port
 app.listen(port, () => {

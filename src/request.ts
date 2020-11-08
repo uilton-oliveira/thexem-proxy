@@ -7,7 +7,7 @@ import {Response} from "express";
  * from the ```API_URL``` environment variable.
  */
 class Request {
-    private readonly baseUrl: string = process.env.API_URL || 'http://thexem.darksupremo.com/';
+    private readonly baseUrl: string = process.env.API_URL || '107.175.14.17' // 'http://thexem.darksupremo.com/';
     private readonly headerHost: string = process.env.HEADER_HOST || 'thexem.de';
     private readonly userAgent: string = process.env.USER_AGENT || 'okhttp/3.12.1';
 
