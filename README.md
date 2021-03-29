@@ -64,5 +64,5 @@ server {
 
 Running on Docker:
 ```
-docker run -p 3000:3000 -it --rm -v "$(pwd)/config/xem-mapping.json:/thexem/config/xem-mapping.json" uilton/thexem-proxy:latest
+docker run -p 3000:3000 -it --rm -v "$(pwd)/config/xem-mapping.json:/thexem/config/xem-mapping.json" ghcr.io/darksupremo/thexem-proxy:latest
 ```
