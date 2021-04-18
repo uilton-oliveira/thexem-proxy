@@ -1,9 +1,9 @@
-import * as express from 'express';
-import * as bodyParser from "body-parser";
+import * as express from 'express'
+import * as YAML from 'yaml'
 import { request } from './request'
-const fs = require('fs');
+import * as fs from 'fs'
 
-function JSON_stringify(s, emit_unicode = false)
+function JSON_stringify(s: any, emit_unicode = false)
 {
     var json = JSON.stringify(s);
     return emit_unicode ? json : json.replace(/[\u007f-\uffff]/g,
@@ -17,13 +17,13 @@ function JSON_stringify(s, emit_unicode = false)
 const app: express.Application = express();
 
 // support application/json type post data
-app.use(bodyParser.json());
+app.use(express.json());
 //support application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 app.all("*", function (req, res, next) {
     request.get(req.url)
-        .then(response => {
+        .then((response: { type: string; text: any; body: any }) => {
             res.type(response.type);
 
             // http://thexem.de/map/allNames?origin=tvdb&seasonNumbers=true
@@ -35,12 +35,12 @@ app.all("*", function (req, res, next) {
             console.log("Overriding request")
 
             let body = response.body;
-            let rawdata = fs.readFileSync('config/xem-mapping.json');
-            let mapping = JSON.parse(rawdata);
+            let rawdata = fs.readFileSync('config/xem-mapping.yml', 'utf-8');
+            let mapping = YAML.parse(rawdata);
 
             let excludeEntries = mapping.exclude || [];
             console.log(`Exclude entries: ${excludeEntries.length}`);
-            excludeEntries.forEach((key) => {
+            excludeEntries.forEach((key: string | number) => {
                 delete body.data[key];
             })
 
@@ -58,7 +58,7 @@ app.all("*", function (req, res, next) {
 
             res.send(JSON_stringify(body))
         })
-        .catch(reason => {
+        .catch((reason: any) => {
             res.send(reason)
             next();
         })

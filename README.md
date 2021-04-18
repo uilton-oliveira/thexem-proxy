@@ -14,28 +14,20 @@ This directory has been created in the image to be used for configuration and pe
 
 ### xem-mapping.json
 This file contains the custom mapping that will be merged with the original response  
-```json
-{
-    "exclude": [
-        "Tvdb-ID", "72241"
-    ],
-    "include": {
-        "Tvdb-ID": [{
-            "Example All Seasons Title 1": -1
-        }, {
-            "Example All Seasons Title 2": -1
-        }, {
-            "Example Season 1 Title": 1
-        }, {
-            "Example Season 2 Title": 2
-        }, {
-            "Example Season 3 Title": 3
-        }],
-        "326732": [{
-            "Ze Tian Ji": -1
-        }]
-  }
-}
+```yaml
+exclude:
+# TVDB-ID
+- '72241'
+include:
+  '326732':
+  - Ze Tian Ji: -1
+  'Tvdb-ID':
+  - Example All Seasons Title 1: -1
+  - Example All Seasons Title 2: -1
+  - Example Season 1 Title: 1
+  - Example Season 2 Title: 2
+  - Example Season 3 Title: 3
+
 ```
 
 

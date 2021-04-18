@@ -1,0 +1,11 @@
+exclude:
+- '72241'
+include:
+  '326732':
+  - Ze Tian Ji: -1
+  '999999':
+  - Example All Seasons Title 1: -1
+  - Example All Seasons Title 2: -1
+  - Example Season 1 Title: 1
+  - Example Season 2 Title: 2
+  - Example Season 3 Title: 3
