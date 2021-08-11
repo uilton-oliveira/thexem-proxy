@@ -4,9 +4,6 @@ on:
   push:
     branches: [ master ]
   workflow_dispatch:
-
-env:
-  IMAGE_NAME: darksupremo/thexem-proxy
   
 jobs:
   build-docker:
@@ -37,7 +34,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ github.repository }}:latest
             
       - name: Build Changelog
         id: github_release
