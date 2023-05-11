@@ -12,7 +12,7 @@ This directory has been created in the image to be used for configuration and pe
 /thexem/config
 ```
 
-### xem-mapping.json
+### xem-mapping.yml
 This file contains the custom mapping that will be merged with the original response  
 ```yaml
 exclude:
@@ -56,5 +56,5 @@ server {
 
 Running on Docker:
 ```
-docker run -p 3000:3000 -it --rm -v "$(pwd)/config/xem-mapping.json:/thexem/config/xem-mapping.json" ghcr.io/darksupremo/thexem-proxy:latest
+docker run -p 3000:3000 -it --rm -v "$(pwd)/config/xem-mapping.json:/thexem/config/xem-mapping.yml" ghcr.io/darksupremo/thexem-proxy:latest
 ```
